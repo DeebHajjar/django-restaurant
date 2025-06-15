@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ home_page.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>    
+    <header>
+        <nav>
+            <div class="logo">{{ home_page.title }}</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('{{ home_page.image.url }}') no-repeat center center/cover;">
+        <div class="hero-content">
+            <h1>{{ home_page.subtitle }}</h1>
+            <p>{{ home_page.description }}</p>
+            <a href="#menu" class="cta-button">View Menu</a>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2>Our Menu</h2>
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            {% for category in categories %}
+                <button class="filter-btn" data-filter="{{ category.name|lower }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+        
+        <div class="menu-items">
+            {% for category in categories %}
+                <div class="menu-category" data-category="{{ category.name|lower }}">
+                    {% for item in menu_items %}
+                        {% if item.category == category %}
+                            <div class="menu-item">
+                                {% if item.image %}
+                                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                                {% endif %}
+                                <h3>{{ item.name }}</h3>
+                                <p>{{ item.description }}</p>
+                                <span class="price">${{ item.price }}</span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2>{{ home_page.about_title }}</h2>
+            <p>{{ home_page.about_description }}</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div>
+                <i class="fas fa-map-marker-alt"></i>
+                <p>{{ home_page.location }}</p>
+            </div>
+            <div>
+                <i class="fas fa-phone"></i>
+                <p>{{ home_page.phone }}</p>
+            </div>
+            <div>
+                <i class="fas fa-envelope"></i>
+                <p>{{ home_page.email }}</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="hours">
+                <h3>Opening Hours</h3>
+                <p>{{ home_page.opening_hours }}</p>
+            </div>
+            <div class="social-links">
+                <a href="{{ home_page.facbook_link }}"><i class="fab fa-facebook"></i></a>
+                <a href="{{ home_page.instagram_link }}"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 {{ home_page.title }}. All rights reserved.</p>
+            <p>Developed by <span>Deeb Hajjar</span> & <span>Ahmad Younes</span></p>
+        </div>
+    </footer>
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script src="{% static 'js/navigation.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.js' %}"></script>
+</body>
+</html>
