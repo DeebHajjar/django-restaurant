@@ -1,27 +1,33 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ home_page.title }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>    
     <header>
         <nav>
-            <div class="logo">{{ home_page.title }}</div>
+            <div class="logo">
+                {% if home_page.logo %}
+                <img src="{{ home_page.logo.url }}" class="logo-img">
+                {% endif %}
+                <sapn>{{ home_page.name }}</span>
+            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#menu">القائمة</a></li>
+                <li><a href="#about">عن المطعم</a></li>
+                <li><a href="#contact">إتصل بنا</a></li>
             </ul>
         </nav>
     </header>
@@ -29,16 +35,16 @@
     <section id="home" class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url('{{ home_page.image.url }}') no-repeat center center/cover;">
         <div class="hero-content">
-            <h1>{{ home_page.subtitle }}</h1>
+            <h1>{{ home_page.title }}</h1>
             <p>{{ home_page.description }}</p>
-            <a href="#menu" class="cta-button">View Menu</a>
+            <a href="#menu" class="cta-button">عرض القائمة</a>
         </div>
     </section>
 
     <section id="menu" class="menu-section">
-        <h2>Our Menu</h2>
+        <h2>قائمتنا</h2>
         <div class="menu-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn active" data-filter="all">الكل</button>
             {% for category in categories %}
                 <button class="filter-btn" data-filter="{{ category.name|lower }}">{{ category.name }}</button>
             {% endfor %}
@@ -69,33 +75,35 @@
 
     <section id="about" class="about-section">
         <div class="about-content">
-            <h2>{{ home_page.aboute_title }}</h2>
+            <h2>{{ home_page.about_title }}</h2>
             <p>{{ home_page.about_description }}</p>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <h2>Contact Us</h2>
+        <h2>إتصل بنا</h2>
         <div class="contact-info">
             <div>
                 <i class="fas fa-map-marker-alt"></i>
                 <p>{{ home_page.location }}</p>
             </div>
-            <div>
+            <div class="phone-number">
                 <i class="fas fa-phone"></i>
                 <p>{{ home_page.phone }}</p>
             </div>
-            <div>
-                <i class="fas fa-envelope"></i>
-                <p>{{ home_page.email }}</p>
-            </div>
+            {% if home_page.email %}
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <p>{{ home_page.email }}</p>
+                </div>
+            {% endif %}
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="hours">
-                <h3>Opening Hours</h3>
+                <h3>ساعات العمل</h3>
                 <p>{{ home_page.opening_hours }}</p>
             </div>
             <div class="social-links">
@@ -104,7 +112,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 {{ home_page.title }}. All rights reserved.</p>
+            <p>&copy; 2025 {{ home_page.name }}. جميع الحقوق محفوظة.</p>
             <p>Developed by <span>Deeb Hajjar</span> & <span>Ahmad Younes</span></p>
         </div>
     </footer>

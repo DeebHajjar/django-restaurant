@@ -3,14 +3,14 @@ from .models import Category, MenuItem, HomePage
 
 @admin.register(HomePage)
 class HomePageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'subtitle', 'location', 'phone', 'email')
-    search_fields = ('title', 'subtitle', 'location', 'phone', 'email')
+    list_display = ('name', 'title', 'location', 'phone', 'email')
+    search_fields = ('name', 'title', 'location', 'phone', 'email')
     fieldsets = (
         (None, {
-            'fields': ('title', 'subtitle', 'description', 'image')
+            'fields': ('name', 'logo', 'title', 'description', 'image')
         }),
         ('About Us', {
-            'fields': ('aboute_title', 'about_description')
+            'fields': ('about_title', 'about_description')
         }),
         ('Contact Information', {
             'fields': ('location', 'phone', 'email', 'opening_hours', 'facbook_link', 'instagram_link')

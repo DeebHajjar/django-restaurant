@@ -11,9 +11,10 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
     line-height: 1.6;
     color: #333;
+    text-align: right;
 }
 
 /* Header & Navigation */
@@ -63,12 +64,24 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-direction: row-reverse;
 }
 
 .logo {
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-size: 1.5rem;
     font-weight: bold;
     color: #2c3e50;
 }
@@ -76,6 +89,8 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
+    gap: 2rem;
+    flex-direction: row-reverse;
 }
 
 .nav-links li {
@@ -135,6 +150,7 @@ nav {
 .menu-section {
     padding: 80px 20px;
     background-color: #f9f9f9;
+    text-align: right;
 }
 
 .menu-section h2 {
@@ -156,6 +172,7 @@ nav {
 .menu-category {
     display: none;
     width: 100%;
+    flex-direction: row-reverse;
 }
 
 /* Show all menu categories when 'all' is active */
@@ -199,6 +216,7 @@ nav {
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-align: right;
 }
 
 .menu-item:hover {
@@ -305,6 +323,10 @@ nav {
     margin-bottom: 1rem;
 }
 
+.phone-number p {
+    direction: ltr;
+}
+
 /* Footer */
 footer {
     background-color: #2c3e50;
@@ -346,6 +368,12 @@ footer {
 .copyright span {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
+}
+
+/* Arabic Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
 }
 
 /* Responsive Design */
@@ -460,4 +488,17 @@ footer {
     .logo {
         font-size: 1.5rem;
     }
+}
+
+
+/* RTL Form Elements */
+input, textarea {
+    text-align: right;
+    direction: rtl;
+}
+
+/* RTL Icons */
+.icon {
+    margin-left: 0.5rem;
+    margin-right: 0;
 }
