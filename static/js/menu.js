@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const menuItems = document.querySelectorAll('.menu-category');
+    const menuCategories = document.querySelectorAll('.menu-category');
+
+    // Show all categories initially
+    menuCategories.forEach(category => {
+        category.classList.add('active');
+    });
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -11,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const filterValue = button.getAttribute('data-filter');
 
-            menuItems.forEach(item => {
+            menuCategories.forEach(category => {
                 if (filterValue === 'all') {
-                    item.style.display = 'block';
+                    category.classList.add('active');
                 } else {
-                    if (item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
+                    if (category.getAttribute('data-category') === filterValue) {
+                        category.classList.add('active');
                     } else {
-                        item.style.display = 'none';
+                        category.classList.remove('active');
                     }
                 }
             });

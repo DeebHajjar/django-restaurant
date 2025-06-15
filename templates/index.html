@@ -47,18 +47,21 @@
         <div class="menu-items">
             {% for category in categories %}
                 <div class="menu-category" data-category="{{ category.name|lower }}">
-                    {% for item in menu_items %}
-                        {% if item.category == category %}
-                            <div class="menu-item">
-                                {% if item.image %}
-                                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
-                                {% endif %}
-                                <h3>{{ item.name }}</h3>
-                                <p>{{ item.description }}</p>
-                                <span class="price">${{ item.price }}</span>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    <h3 class="category-name">{{ category.name }}</h3>
+                    <div class="menu-items-grid">
+                        {% for item in menu_items %}
+                            {% if item.category == category %}
+                                <div class="menu-item">
+                                    {% if item.image %}
+                                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                                    {% endif %}
+                                    <h3>{{ item.name }}</h3>
+                                    <p>{{ item.description }}</p>
+                                    <span class="price">${{ item.price }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             {% endfor %}
         </div>
@@ -66,7 +69,7 @@
 
     <section id="about" class="about-section">
         <div class="about-content">
-            <h2>{{ home_page.about_title }}</h2>
+            <h2>{{ home_page.aboute_title }}</h2>
             <p>{{ home_page.about_description }}</p>
         </div>
     </section>
